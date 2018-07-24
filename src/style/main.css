@@ -21,7 +21,7 @@ body {
 }
 
 .page__error {
-  position: absolute;
+  /* position: absolute; */
   padding: 5px;
   color: #fff;
   background-color: #f44336;
@@ -65,13 +65,25 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 10;
+  /* z-index: 10; */
   border: none;
   background-color: transparent;
   background-position: center center;
   background-repeat: no-repeat;
 }
-
+.addto{
+  position: absolute;
+  right: 0;
+  bottom: 40;
+  width: 100%;
+  left: 0;
+  z-index: 1000;
+  /* margin: 0; */
+  color: #FFF;
+  text-align: center;
+  font-size: 16px;
+  background-color: rgb(73, 124, 141);
+}
 .pokemon,
 .pokemon__sprite {
   width: 140px;
@@ -122,10 +134,33 @@ body {
 line-height: 300%;
 color:white
 }
+
+/********************* Login Form *******************/
+
+.form-heading { color:#fff; font-size:23px;}
+.panel{
+  padding-bottom: 20px;
+}
+.panel h2{ color:#444444; font-size:18px; margin:0 0 12px 0;}
+.panel p { color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
+.main-div {
+  background: #ffffff none repeat scroll 0 0;
+  border-radius: 2px;
+  margin-top: 25%;
+  margin-left:35%;
+  max-width: 38%;
+  padding: 50px 70px 70px 71px;
+}
+#Login{
+  text-align: center;
+  margin-left: 2%
+}
+
+
 @media (min-width: 992px) {
   .pokemon,
   .pokemon__sprite {
     width: 160px;
-    height: 160px;
+    height: 200px;
   }
 }

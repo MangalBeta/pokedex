@@ -1,7 +1,6 @@
 import {
   GET_LOGIN_REQUEST,
   GET_LOGIN_SUCCESS,
-  GET_LOGIN_FAIL,
   GET_LOGOUT_SUCCESS
 } from '../constants/auth'
 function setUser(data) {

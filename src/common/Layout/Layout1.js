@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, NavItem, Nav, Button } from 'react-bootstrap/lib'
+import { Navbar, NavItem, Nav } from 'react-bootstrap/lib'
 import { Link,browserHistory } from 'react-router';
 
 
@@ -29,7 +29,7 @@ logoutUser = () =>{
                 <Navbar bsStyle='inverse'>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <Link to="/"><span style={brandStyle}>Pokedex</span></Link>
+                            <Link to="/pokedex"><span style={brandStyle}>Pokedex</span></Link>
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>

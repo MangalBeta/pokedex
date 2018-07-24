@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-import { Router, Route, hashHistory, IndexRoute, browserHistory } from 'react-router';
-import { persistStore } from 'redux-persist';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+// import { persistStore } from 'redux-persist';
 // Layout container
 import LayoutContainer from './common/Layout/LayoutContainer';
 import Layout1 from './containers/layout';
 import Layout2 from './common/Layout/Layout2';
 
-import App from './App'
 import Login from './containers/auth'
 import Page from './containers/page'
 import Profile from './containers/profile'
 
-import configureStore from './redux/store/configure-store'
-const store = configureStore()
+// import configureStore from './redux/store/configure-store'
+// const store = configureStore()
 
 class Routes extends Component {
     constructor(props) {
@@ -22,20 +21,20 @@ class Routes extends Component {
         }
     }
     privateRoutes = () => {
-        persistStore(store, {}, () => {
-            let { user } = store.getState().auth
-            if (!user) {
-                browserHistory.replace('/');
-            } 
-        })
+        // persistStore(store, {}, () => {
+        //     let { user } = store.getState().auth
+        //     if (!user) {
+        //         browserHistory.replace('/');
+        //     } 
+        // })
     }
     requireLogin = () => {
-        persistStore(store, {}, () => {
-            let { user } = store.getState().auth
-            if (user) {
-                browserHistory.replace('/pokedex');
-            } 
-        })
+        // persistStore(store, {}, () => {
+        //     let { user } = store.getState().auth
+        //     if (user) {
+        //         browserHistory.replace('/pokedex');
+        //     } 
+        // })
     }
 
     render() {

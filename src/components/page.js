@@ -19,7 +19,6 @@ class Page extends Component {
       previous: null
     };
   }
-
   componentDidMount() {
     let { limit, offset } = this.state
     let url = `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`
@@ -56,7 +55,6 @@ class Page extends Component {
       this.getPokemons(url)
     })
   }
-
   handlePaginationSelect = (selectedPage) => {
     let url;
     if (selectedPage.target.textContent === "Previous")
@@ -69,28 +67,44 @@ class Page extends Component {
       activePage: selectedPage
     });
   }
+renderPokemonList(){
+  let { displayedPokemons ,featuredList,clearMessage,removeToFevorite,addToFevorite} = this.props
+  
+  let featuredId = featuredList.map(pok => pok.id)
+  return (
+     displayedPokemons.map(pokemon => {
+      return (
+        <li className="pokemons__item" key={pokemon.id}>
+          <Pokemon
+             pokemon={pokemon} 
+             featuredId={featuredId}
+             clearMessage={clearMessage}
+             removeToFevorite={removeToFevorite}
+             addToFevorite={addToFevorite}
+          />
+        </li>
+      )
+    })
+  )
+}
 
   render() {
-    let { displayedPokemons, isFetched, error } = this.props
-      let pokemons = displayedPokemons.map(pokemon => {
-        return (
-          <li className="pokemons__item" key={pokemon.id}>
-            <Pokemon pokemon={pokemon} />
-          </li>
-        )
-      })
-    
+    let { displayedPokemons, isFetched,success } = this.props
+
     return (
       <div className="page">
-        {error && <div className="page__error">{error}</div>}
 
         <div className="page__search">
           <Row>
             <Col sm={1} />
             <Col sm={4}>
               <Search onChange={this.handleSearch.bind(this)} />
+
             </Col>
-            <Col sm={3} />
+            <Col sm={3} >
+             {(success) && <div className="page__error">{success}</div> }
+             
+        </Col>
             <Col sm={4}>
               <SelectItemsPerPageButtons
                 options={[10, 50, 100, 200]}
@@ -106,22 +120,22 @@ class Page extends Component {
           <p className='loading'>Loading...</p>
         ) : (
             <div>
-              <ul className="pokemons">{pokemons}</ul>
-              {displayedPokemons.length ? 
-              <div className="pagination">
-                <PaginationContainer
-                  btnSize={'small'}
-                  next={this.state.next}
-                  previos={this.state.previous}
-                  totalPages={this.state.totalPages}
-                  activePage={this.state.activePage}
-                  onSelect={this.handlePaginationSelect} />
-              </div>: null}
+              <ul className="pokemons">{this.renderPokemonList()}</ul>
+              {displayedPokemons.length ?
+                <div className="pagination">
+                  <PaginationContainer
+                    btnSize={'small'}
+                    next={this.state.next}
+                    previos={this.state.previous}
+                    totalPages={this.state.totalPages}
+                    activePage={this.state.activePage}
+                    onSelect={this.handlePaginationSelect} />
+                </div> : null}
 
             </div>
           )}
-{!isFetched && !displayedPokemons.length ? 
-<p className='loading'>No Record Found </p> : null}
+        {!isFetched && !displayedPokemons.length ?
+          <p className='loading'>No Record Found </p> : null}
       </div>
     )
   }

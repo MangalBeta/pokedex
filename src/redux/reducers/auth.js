@@ -28,6 +28,7 @@ import { REHYDRATE } from 'redux-persist/constants';
         }
         case GET_LOGOUT_SUCCESS:
         return initialState
+        
       case GET_LOGIN_FAIL:
         return {
           ...state,
@@ -37,7 +38,7 @@ import { REHYDRATE } from 'redux-persist/constants';
         case REHYDRATE:
         return {
           ...state,
-          ...action.payload.auth 
+          ...action.payload.auth
         }
       default:
         return state

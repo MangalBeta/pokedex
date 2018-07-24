@@ -3,18 +3,23 @@ import * as pageActions from '../redux/actions/page'
 import Page from '../components/page'
 
 function mapStateToProps(state) {
-  const { displayedPokemons, isFetched, error } = state.page
+  const { displayedPokemons, isFetched, success,error,featuredList } = state.page
 
   return {
     displayedPokemons,
     isFetched,
-    error
+    error,
+    success,
+    featuredList
   }
 }
 
 const mapDispatchToProps = {
   getPokemons: pageActions.getPokemons,
-  filterPokemons: pageActions.filterPokemons
+  filterPokemons: pageActions.filterPokemons,
+  addToFevorite:pageActions.addToFevorite,
+  removeToFevorite:pageActions.removeToFevorite,
+  clearMessage : pageActions.clearMessage
 }
 
 export default connect(

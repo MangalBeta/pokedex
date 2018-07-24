@@ -3,7 +3,10 @@ import {
   GET_POKEMONS_SUCCESS,
   GET_POKEMONS_FAIL,
   SET_POKEMONS,
-  FILTER_POKEMONS
+  FILTER_POKEMONS,
+  ADD_FEVORITE_SUCCESS,REMOVE_FEVORITE_SUCCESS,
+  GET_FEVORITE_LIST_SUCCESS,
+  CLEAR_MESSAGE_SUCCESS
 } from '../constants/page'
 
 function setPokemons(data) {
@@ -61,5 +64,54 @@ export function filterPokemons(searchString = '') {
       type: FILTER_POKEMONS,
       payload: displayedPokemons
     })
+  }
+}
+
+// Remove Add 
+function clearMessageSuccess () {
+  return {
+    type: CLEAR_MESSAGE_SUCCESS,
+ }
+}
+
+//fevorite Action
+
+function addToFevoriteSuccess (pokemon) {
+  return {
+     type: ADD_FEVORITE_SUCCESS,
+     pokemon
+  }
+}
+function removeToFevoriteSuccess (pokemon) {
+   return {
+     type: REMOVE_FEVORITE_SUCCESS,
+     pokemon
+  }
+}
+function getFeaturedListSuccess () {
+  return {
+     type: GET_FEVORITE_LIST_SUCCESS,
+  }
+}
+
+export function addToFevorite(pokemon){
+  return function(dispatch){
+    dispatch(addToFevoriteSuccess(pokemon))
+  }
+}
+export function removeToFevorite(pokemon){
+  return function(dispatch){
+    dispatch(removeToFevoriteSuccess(pokemon))
+  }
+}
+export function getFeaturedList(){
+  return function(dispatch){
+    dispatch(getFeaturedListSuccess())
+  }
+}
+
+export function clearMessage(){
+  return function(dispatch){
+    dispatch(clearMessageSuccess())
   }
 }
